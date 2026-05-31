@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { DEMO_MODE, getDemoAgentResponse } from "@/lib/demo";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -62,6 +63,29 @@ export default function AgentChat({ userId }: Props) {
     ]);
 
     try {
+      if (DEMO_MODE) {
+        const response = getDemoAgentResponse(userMessage);
+        // Simulate streaming by revealing the response word by word
+        const words = response.split(" ");
+        for (let i = 0; i < words.length; i++) {
+          const chunk = (i === 0 ? "" : " ") + words[i];
+          await new Promise((r) => setTimeout(r, 30));
+          setMessages((prev) =>
+            prev.map((m, idx) =>
+              idx === prev.length - 1 ? { ...m, content: m.content + chunk } : m
+            )
+          );
+        }
+        setMessages((prev) =>
+          prev.map((m, idx) =>
+            idx === prev.length - 1 ? { ...m, streaming: false } : m
+          )
+        );
+        setLoading(false);
+        inputRef.current?.focus();
+        return;
+      }
+
       const resp = await fetch(`${API_BASE}/agent/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },

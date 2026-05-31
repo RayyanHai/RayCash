@@ -1,0 +1,278 @@
+import type { Item, Transaction } from "./api";
+
+// Demo mode is active when no backend URL is configured (e.g. Vercel without a backend)
+export const DEMO_MODE = !process.env.NEXT_PUBLIC_API_URL;
+
+export const DEMO_USER = {
+  id: "demo-user-id",
+  email: "",
+  display_name: null,
+};
+
+export const DEMO_ITEMS: Item[] = [
+  {
+    id: "demo-item-chase",
+    user_id: "demo-user-id",
+    plaid_item_id: "chase-xxxx-1234",
+    institution_id: "ins_3",
+    institution_name: "Chase",
+  },
+  {
+    id: "demo-item-capone",
+    user_id: "demo-user-id",
+    plaid_item_id: "capone-xxxx-5678",
+    institution_id: "ins_12",
+    institution_name: "Capital One",
+  },
+];
+
+export const DEMO_TRANSACTIONS: Transaction[] = [
+  {
+    id: "tx-1",
+    user_id: "demo-user-id",
+    item_id: "demo-item-chase",
+    plaid_transaction_id: "pt-1",
+    amount: 2850.0,
+    merchant_name: "Employer Payroll",
+    category: "PAYROLL",
+    date: "2026-05-15",
+    posted: true,
+  },
+  {
+    id: "tx-2",
+    user_id: "demo-user-id",
+    item_id: "demo-item-capone",
+    plaid_transaction_id: "pt-2",
+    amount: -299.0,
+    merchant_name: "Apple Store",
+    category: "GENERAL_MERCHANDISE",
+    date: "2026-05-28",
+    posted: true,
+  },
+  {
+    id: "tx-3",
+    user_id: "demo-user-id",
+    item_id: "demo-item-capone",
+    plaid_transaction_id: "pt-3",
+    amount: -289.0,
+    merchant_name: "Delta Air Lines",
+    category: "TRAVEL",
+    date: "2026-05-20",
+    posted: true,
+  },
+  {
+    id: "tx-4",
+    user_id: "demo-user-id",
+    item_id: "demo-item-capone",
+    plaid_transaction_id: "pt-4",
+    amount: -87.32,
+    merchant_name: "Whole Foods Market",
+    category: "FOOD_AND_DRINK",
+    date: "2026-05-26",
+    posted: true,
+  },
+  {
+    id: "tx-5",
+    user_id: "demo-user-id",
+    item_id: "demo-item-capone",
+    plaid_transaction_id: "pt-5",
+    amount: -67.43,
+    merchant_name: "Target",
+    category: "GENERAL_MERCHANDISE",
+    date: "2026-05-22",
+    posted: true,
+  },
+  {
+    id: "tx-6",
+    user_id: "demo-user-id",
+    item_id: "demo-item-capone",
+    plaid_transaction_id: "pt-6",
+    amount: -54.21,
+    merchant_name: "Trader Joe's",
+    category: "FOOD_AND_DRINK",
+    date: "2026-05-19",
+    posted: true,
+  },
+  {
+    id: "tx-7",
+    user_id: "demo-user-id",
+    item_id: "demo-item-chase",
+    plaid_transaction_id: "pt-7",
+    amount: 500.0,
+    merchant_name: "Venmo Transfer",
+    category: "TRANSFER",
+    date: "2026-05-18",
+    posted: true,
+  },
+  {
+    id: "tx-8",
+    user_id: "demo-user-id",
+    item_id: "demo-item-capone",
+    plaid_transaction_id: "pt-8",
+    amount: -34.99,
+    merchant_name: "Amazon",
+    category: "GENERAL_MERCHANDISE",
+    date: "2026-05-25",
+    posted: true,
+  },
+  {
+    id: "tx-9",
+    user_id: "demo-user-id",
+    item_id: "demo-item-capone",
+    plaid_transaction_id: "pt-9",
+    amount: -29.99,
+    merchant_name: "Steam",
+    category: "ENTERTAINMENT",
+    date: "2026-05-17",
+    posted: true,
+  },
+  {
+    id: "tx-10",
+    user_id: "demo-user-id",
+    item_id: "demo-item-capone",
+    plaid_transaction_id: "pt-10",
+    amount: -24.99,
+    merchant_name: "Planet Fitness",
+    category: "ENTERTAINMENT",
+    date: "2026-05-01",
+    posted: true,
+  },
+  {
+    id: "tx-11",
+    user_id: "demo-user-id",
+    item_id: "demo-item-capone",
+    plaid_transaction_id: "pt-11",
+    amount: -21.0,
+    merchant_name: "Bookshop.org",
+    category: "GENERAL_MERCHANDISE",
+    date: "2026-05-14",
+    posted: true,
+  },
+  {
+    id: "tx-12",
+    user_id: "demo-user-id",
+    item_id: "demo-item-capone",
+    plaid_transaction_id: "pt-12",
+    amount: -18.5,
+    merchant_name: "Uber",
+    category: "TRAVEL",
+    date: "2026-05-27",
+    posted: true,
+  },
+  {
+    id: "tx-13",
+    user_id: "demo-user-id",
+    item_id: "demo-item-capone",
+    plaid_transaction_id: "pt-13",
+    amount: -17.99,
+    merchant_name: "Hulu",
+    category: "Software",
+    date: "2026-05-05",
+    posted: true,
+  },
+  {
+    id: "tx-14",
+    user_id: "demo-user-id",
+    item_id: "demo-item-capone",
+    plaid_transaction_id: "pt-14",
+    amount: -16.3,
+    merchant_name: "Shake Shack",
+    category: "FOOD_AND_DRINK",
+    date: "2026-05-23",
+    posted: false,
+  },
+  {
+    id: "tx-15",
+    user_id: "demo-user-id",
+    item_id: "demo-item-capone",
+    plaid_transaction_id: "pt-15",
+    amount: -15.49,
+    merchant_name: "Netflix",
+    category: "Software",
+    date: "2026-05-08",
+    posted: true,
+  },
+  {
+    id: "tx-16",
+    user_id: "demo-user-id",
+    item_id: "demo-item-capone",
+    plaid_transaction_id: "pt-16",
+    amount: -12.75,
+    merchant_name: "Chipotle",
+    category: "FOOD_AND_DRINK",
+    date: "2026-05-21",
+    posted: true,
+  },
+  {
+    id: "tx-17",
+    user_id: "demo-user-id",
+    item_id: "demo-item-capone",
+    plaid_transaction_id: "pt-17",
+    amount: -9.99,
+    merchant_name: "Spotify",
+    category: "Software",
+    date: "2026-05-03",
+    posted: true,
+  },
+  {
+    id: "tx-18",
+    user_id: "demo-user-id",
+    item_id: "demo-item-capone",
+    plaid_transaction_id: "pt-18",
+    amount: -9.8,
+    merchant_name: "Lyft",
+    category: "TRAVEL",
+    date: "2026-05-24",
+    posted: true,
+  },
+  {
+    id: "tx-19",
+    user_id: "demo-user-id",
+    item_id: "demo-item-capone",
+    plaid_transaction_id: "pt-19",
+    amount: -6.5,
+    merchant_name: "Starbucks",
+    category: "FOOD_AND_DRINK",
+    date: "2026-05-29",
+    posted: false,
+  },
+  {
+    id: "tx-20",
+    user_id: "demo-user-id",
+    item_id: "demo-item-chase",
+    plaid_transaction_id: "pt-20",
+    amount: -50.0,
+    merchant_name: "PayPal Transfer",
+    category: "TRANSFER",
+    date: "2026-05-11",
+    posted: true,
+  },
+];
+
+const DEMO_AGENT_RESPONSES: Array<{ match: RegExp; response: string }> = [
+  {
+    match: /month|spend|total/i,
+    response:
+      "Here's your May 2026 spending summary:\n\n**Total income:** +$3,350.00\n**Total expenses:** -$1,065.25\n**Net:** +$2,284.75\n\nYou're in good shape this month — expenses are well under income.",
+  },
+  {
+    match: /categor/i,
+    response:
+      "Your top spending categories for May:\n\n1. **Shopping** — $422.42 (Apple, Amazon, Target, Bookshop)\n2. **Food & Drink** — $277.08 (Whole Foods, Trader Joe's, Shake Shack, Chipotle, Starbucks)\n3. **Travel** — $317.30 (Delta, Uber, Lyft)\n4. **Entertainment** — $54.98 (Steam, Planet Fitness)\n5. **Software** — $53.47 (Hulu, Netflix, Spotify)\n6. **Transfers** — -$60.00 net (received $500, sent $50, PayPal -$50)",
+  },
+  {
+    match: /recent|latest|last/i,
+    response:
+      "Your 5 most recent transactions:\n\n1. **Starbucks** — -$6.50 (May 29, pending)\n2. **Apple Store** — -$299.00 (May 28)\n3. **Uber** — -$18.50 (May 27)\n4. **Whole Foods** — -$87.32 (May 26)\n5. **Shake Shack** — -$16.30 (May 23, pending)",
+  },
+];
+
+const DEMO_FALLBACK =
+  "I can see your transaction data. Try asking: 'How much did I spend this month?', 'What are my biggest categories?', or 'Show me recent transactions.'";
+
+export function getDemoAgentResponse(message: string): string {
+  for (const { match, response } of DEMO_AGENT_RESPONSES) {
+    if (match.test(message)) return response;
+  }
+  return DEMO_FALLBACK;
+}

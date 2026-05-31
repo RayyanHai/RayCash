@@ -36,11 +36,11 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
   return res.json() as Promise<T>;
 }
 
-export function createOrGetUser(email: string): Promise<User> {
+export function createOrGetUser(email: string, displayName?: string): Promise<User> {
   return request<User>("/users", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email }),
+    body: JSON.stringify({ email, display_name: displayName ?? null }),
   });
 }
 

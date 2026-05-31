@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { getItems, getTransactions } from "@/lib/api";
 import type { Item, Transaction } from "@/lib/api";
+import { DEMO_MODE, DEMO_ITEMS, DEMO_TRANSACTIONS } from "@/lib/demo";
 import AgentChat from "./AgentChat";
 import LinkedAccounts from "./LinkedAccounts";
 import TransactionTable from "./TransactionTable";
@@ -30,6 +31,13 @@ export default function Dashboard() {
     }
     setUserId(id);
     setEmail(em);
+
+    if (DEMO_MODE) {
+      setItems(DEMO_ITEMS);
+      setTransactions(DEMO_TRANSACTIONS);
+      setLoading(false);
+      return;
+    }
 
     Promise.all([getItems(id), getTransactions(id)])
       .then(([itemsData, txData]) => {
