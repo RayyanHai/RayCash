@@ -40,6 +40,14 @@ export default function LoginPage() {
       localStorage.setItem("raycash_user_email", user.email);
       router.replace("/dashboard");
     } catch {
+      // If there's no real backend URL, silently fall into demo mode
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+      if (!apiUrl || apiUrl === "undefined") {
+        localStorage.setItem("raycash_user_id", "demo-user-id");
+        localStorage.setItem("raycash_user_email", email);
+        router.replace("/dashboard");
+        return;
+      }
       setError("Could not connect. Make sure the backend is running.");
     } finally {
       setLoading(false);

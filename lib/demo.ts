@@ -1,7 +1,9 @@
 import type { Item, Transaction } from "./api";
 
-// Demo mode is active when no backend URL is configured (e.g. Vercel without a backend)
-export const DEMO_MODE = !process.env.NEXT_PUBLIC_API_URL;
+// Demo mode is active when no backend URL is configured.
+// Guard against Turbopack/webpack inlining missing env vars as the string "undefined".
+const _apiUrl = process.env.NEXT_PUBLIC_API_URL;
+export const DEMO_MODE = !_apiUrl || _apiUrl === "undefined";
 
 export const DEMO_USER = {
   id: "demo-user-id",
