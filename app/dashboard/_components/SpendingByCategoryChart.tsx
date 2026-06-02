@@ -98,7 +98,7 @@ export default function SpendingByCategoryChart({ totals }: Props) {
                 width={86}
               />
               <Tooltip
-                formatter={(value: number) => [formatUSD(value), "Spent"]}
+                formatter={(value) => [formatUSD(Number(value ?? 0)), "Spent"]}
                 contentStyle={{
                   fontSize: 12,
                   borderRadius: 8,
