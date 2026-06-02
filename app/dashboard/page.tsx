@@ -12,9 +12,11 @@ import {
   getBudgetStatuses,
   getGoalStatuses,
   getMonthlyReport,
+  getRecurringInsights,
   getTransactions,
 } from "@/lib/api";
-import type { BudgetStatus, GoalStatus, MonthlyReport, Transaction } from "@/lib/types";
+import type { BudgetStatus, GoalStatus, MonthlyReport, RecurringCandidate, Transaction } from "@/lib/types";
+import RecurringView from "./_components/RecurringView";
 
 export default function DashboardPage() {
   const router = useRouter();
@@ -25,6 +27,7 @@ export default function DashboardPage() {
   const [budgets, setBudgets] = useState<BudgetStatus[]>([]);
   const [goals, setGoals] = useState<GoalStatus[]>([]);
   const [report, setReport] = useState<MonthlyReport | null>(null);
+  const [recurring, setRecurring] = useState<RecurringCandidate[]>([]);
   const [loadingAnalytics, setLoadingAnalytics] = useState(true);
 
   useEffect(() => {
@@ -44,11 +47,13 @@ export default function DashboardPage() {
       getBudgetStatuses(id),
       getGoalStatuses(id),
       getMonthlyReport(id),
-    ]).then(([txResult, budgetResult, goalResult, reportResult]) => {
+      getRecurringInsights(id),
+    ]).then(([txResult, budgetResult, goalResult, reportResult, recurringResult]) => {
       if (txResult.status === "fulfilled") setTransactions(txResult.value);
       if (budgetResult.status === "fulfilled") setBudgets(budgetResult.value);
       if (goalResult.status === "fulfilled") setGoals(goalResult.value);
       if (reportResult.status === "fulfilled") setReport(reportResult.value);
+      if (recurringResult.status === "fulfilled") setRecurring(recurringResult.value);
       setLoadingAnalytics(false);
     });
   }, [router]);
@@ -76,6 +81,7 @@ export default function DashboardPage() {
             <TabsTrigger value="overview">Overview</TabsTrigger>
             <TabsTrigger value="budgets">Budgets</TabsTrigger>
             <TabsTrigger value="goals">Goals</TabsTrigger>
+            <TabsTrigger value="recurring">Recurring</TabsTrigger>
           </TabsList>
 
           {/* Overview tab: spending charts */}
@@ -112,6 +118,14 @@ export default function DashboardPage() {
             ) : (
               <GoalsView goals={goals} />
             )}
+          </TabsContent>
+
+          {/* Recurring charges tab */}
+          <TabsContent value="recurring">
+            <RecurringView
+              candidates={recurring}
+              loading={loadingAnalytics}
+            />
           </TabsContent>
         </Tabs>
       </div>
